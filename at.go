@@ -17,8 +17,8 @@ import (
 
 	"github.com/kardianos/osext"
 	"github.com/tarm/serial"
-	"github.com/zdypro888/workspace/done/at/pdu"
-	"github.com/zdypro888/workspace/done/at/sms"
+	"github.com/zdypro888/at/pdu"
+	"github.com/zdypro888/at/sms"
 )
 
 // Sep <CR><LF> sequence.

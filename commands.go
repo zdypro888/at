@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/zdypro888/workspace/done/at/pdu"
+	"github.com/zdypro888/at/pdu"
 )
 
 // Encoding is an encoding option to use.

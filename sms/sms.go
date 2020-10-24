@@ -9,7 +9,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/zdypro888/workspace/done/at/pdu"
+	"github.com/zdypro888/at/pdu"
 )
 
 // Common errors.
