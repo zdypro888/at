@@ -94,7 +94,7 @@ type response struct {
 	Waiter chan *replyInfo
 }
 
-//Modem 猫池
+// Modem 猫池
 type Modem struct {
 	connection   io.ReadWriteCloser
 	notifycation chan string
@@ -118,7 +118,7 @@ type Modem struct {
 	loggerDat  *log.Logger
 }
 
-//NewModem 创建新的 modem
+// NewModem 创建新的 modem
 func NewModem(debug int) *Modem {
 	m := &Modem{
 		notifycation: make(chan string),
@@ -138,7 +138,7 @@ func (m *Modem) isCDMA() bool {
 	return m.State.SystemMode == MCDMA
 }
 
-func (m *Modem) printf(format string, args ...interface{}) {
+func (m *Modem) printf(format string, args ...any) {
 	if m.Debug&1 == 1 {
 		log.Printf(format, args...)
 	}
@@ -189,7 +189,7 @@ func (m *Modem) sendInteractive(part1, part2 string) error {
 	return nil
 }
 
-//Connect 连接
+// Connect 连接
 func (m *Modem) Connect(tag, address string, baud int) error {
 	var err error
 	if m.Debug != 0 {
@@ -222,7 +222,7 @@ func (m *Modem) Connect(tag, address string, baud int) error {
 	return err
 }
 
-//Close 关闭
+// Close 关闭
 func (m *Modem) Close() {
 	if m.connection != nil {
 		m.connection.Close()
@@ -759,7 +759,7 @@ func (m *Modem) CMGF(text bool) error {
 	return err
 }
 
-//CSMP In text mode there are some additional parameters that can be set
+// CSMP In text mode there are some additional parameters that can be set
 // text mode: 17,167,0,16
 // unicode  : 1,167,0,8
 func (m *Modem) CSMP(a, b, c, d int) error {
@@ -768,7 +768,7 @@ func (m *Modem) CSMP(a, b, c, d int) error {
 	return err
 }
 
-//CSCA sms center
+// CSCA sms center
 func (m *Modem) CSCA(smsc string) error {
 	var req string
 	if smsc == "" {
@@ -782,7 +782,7 @@ func (m *Modem) CSCA(smsc string) error {
 	return err
 }
 
-//CSCS ("GSM","HEX","IRA","PCCP437","UCS2","8859-1")
+// CSCS ("GSM","HEX","IRA","PCCP437","UCS2","8859-1")
 func (m *Modem) CSCS(encode string) error {
 	req := fmt.Sprintf(`AT+CSCS="%s"`, encode)
 	_, err := m.sendWait(req)
@@ -947,7 +947,7 @@ func (m *Modem) Init() error {
 	return nil
 }
 
-//Initialize init sim card?
+// Initialize init sim card?
 func (m *Modem) Initialize(text bool) (err error) {
 	//MemoryTypes.NvRAM, MemoryTypes.NvRAM, MemoryTypes.NvRAM
 	if err = m.CPMS(MTSim, MTSim, MTSim); err != nil {
